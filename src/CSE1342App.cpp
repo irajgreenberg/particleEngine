@@ -10,7 +10,7 @@ void CSE1342App::setup(){
     ofSetColor(255, 100, 0);
     ofFill();
     
-    engine = Engine(ofVec2f(ofGetWidth()/2, 100), 3000, .15, .95, 10, true);
+    engine = Engine(ofVec2f(ofGetWidth()/2, 100), 3000, .15, .95, 8, true);
     engine.setBoundaryCollision();
     engine.setFriction(.9);
     engine.setParticleRadius(3);
