@@ -42,8 +42,11 @@ Engine& Engine::operator=(const Engine& eng)
 {
     // Only do assignment if "eng" is a different object from "this".
     if (this != &eng) {
-        // Deallocate, allocate new space, copy values...
-        delete [] parts;
+        // Allocate new space, copy values...
+        parts = new Particle[eng.particleCount];
+        for (int i=0; i<eng.particleCount; i++){
+            parts[i] = eng.parts[i];
+        }
         loc = eng.loc;
         particleCount = eng.particleCount;
         particleRadius = eng.particleRadius;
@@ -54,7 +57,6 @@ Engine& Engine::operator=(const Engine& eng)
         isPhysicsOn = eng.isPhysicsOn;
         isBoundaryCollision = eng.isBoundaryCollision;
         sprayRadius = eng.sprayRadius;
-        init();
     }
     return *this;
 }
@@ -66,6 +68,10 @@ Engine::Engine(const Engine& eng)
 {
     // Deallocate, allocate new space, copy values...
     delete [] parts;
+    parts = new Particle[eng.particleCount];
+    for (int i=0; i<eng.particleCount; i++){
+        parts[i] = eng.parts[i];
+    }
     loc = eng.loc;
     particleCount = eng.particleCount;
     particleRadius = eng.particleRadius;
@@ -76,8 +82,6 @@ Engine::Engine(const Engine& eng)
     isPhysicsOn = eng.isPhysicsOn;
     isBoundaryCollision = eng.isBoundaryCollision;
     sprayRadius = eng.sprayRadius;
-    init();
-    
 }
 
 
